@@ -4,14 +4,6 @@ set nocompatible
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
-" TODO: Load plugins here (pathogen or vundle)
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-call vundle#end()
 filetype plugin indent on
 
 " Turn on syntax highlighting
@@ -34,7 +26,7 @@ set rnu
 set ruler
 
 " Blink cursor on error instead of beeping (grr)
-" set visualbell
+set visualbell
 
 " Encoding
 set encoding=utf-8
@@ -101,15 +93,6 @@ set list " To enable by default
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
-" Color scheme (terminal)
-" set t_Co=256
-" set background=dark
-" let g:solarized_termcolors=256
-" let g:solarized_termtrans=1
-" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
-" in ~/.vim/colors/ and uncomment:
-" colorscheme solarized
-
 " Make scroll wheel to actually scroll
 :map <ScrollWheelUp> <C-Y>
 :map <ScrollWheelDown> <C-E>
@@ -119,3 +102,10 @@ set mouse=a
 set path=.,**
 
 let g:jsx_ext_required = 0
+
+" enable format on save without @format
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
+
+" use tab to trigger emmet
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
